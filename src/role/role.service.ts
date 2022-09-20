@@ -7,7 +7,7 @@ export class RoleService {
   constructor(private roleRepository: RoleRepository) {}
 
   async findAll(): Promise<any> {
-    return this.roleRepository.all();
+    return this.roleRepository.all(['permissions']);
   }
 
   async findOne(condition, relations: any[] = []): Promise<any[]> {
