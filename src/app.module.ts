@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-// import { CommonModule } from './common/common.module';
+import { CommonModule } from './common/common.module';
 import { UserModule } from './user/user.module';
 import { RoleModule } from './role/role.module';
 import { PermissionModule } from './permission/permission.module';
@@ -10,17 +10,17 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      // host: 'db', // ! service name in docker-compose
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'nest_auth_template',
-      autoLoadEntities: true, // use on DEV only
+      host: process.env.DB_HOST, // ! service name in docker-compose in .env
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      autoLoadEntities:
+        process.env.NODE_ENV === 'dev' || process.env.NODE_ENV === 'dev-local', // use on DEV only
       entities: [],
       synchronize: true,
     }),
-    // CommonModule,
+    CommonModule,
     UserModule,
     RoleModule,
     PermissionModule,

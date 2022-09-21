@@ -1,13 +1,13 @@
 version: '3.9'
 services:
-  # backend:
-  #   build: . # dot mean create a build from Dockerfile
-  #   ports:
-  #     - 3000:3000 # port in local computer | port in local container
-  #   volumes:
-  #     - .:/app
-  #   depends_on:
-  #     - db # make backend services related to db services. db services will run first
+  backend:
+    build: . # ! dot mean create a build from Dockerfile
+    ports:
+      - 3001:3001 # port in local computer | port in local container
+    volumes:
+      - .:/app
+    depends_on:
+      - db # make backend services related to db services. db services will run first
 
   db:
     # image: mysql

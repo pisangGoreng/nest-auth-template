@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as cookieParser from 'cookie-parser';
@@ -32,6 +33,9 @@ async function bootstrap() {
   );
   SwaggerModule.setup('api', app, document); // http://localhost:3000/api
 
-  await app.listen(3000);
+  await app.listen(process.env.APP_PORT);
+
+  console.log(`Server use ==> ${process.env.NODE_ENV}`);
+  console.log(`Server is running on PORT ==> ${process.env.APP_PORT}`);
 }
 bootstrap();
