@@ -23,7 +23,7 @@ steps:
         '--image',
         'gcr.io/test-gcp-344003/nest-auth-template:$COMMIT_SHA',
         '--region',
-        'asia-southeast2',
+        'asia-southeast1',
         '--platform',
         'managed',
         '--port',
