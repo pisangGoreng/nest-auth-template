@@ -12,19 +12,32 @@ import {
   Put,
   Delete,
   Query,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
+import { Request } from 'express';
 import { ApiOperation, ApiTags, ApiBody, ApiParam } from '@nestjs/swagger';
+
 import * as bcrypt from 'bcryptjs';
+import { AuthGuard } from 'src/auth/auth.guard';
 import { UserCreateDto } from './models/user-create.dto';
 import { UserUpdateDto } from './models/user-update.dto';
 import { UserService } from './user.service';
+import { AuthService } from 'src/auth/auth.service';
 
 @UseInterceptors(ClassSerializerInterceptor)
+@UseGuards(AuthGuard)
 @ApiTags('users')
 @Controller('users')
 export class UserController {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private authService: AuthService,
+  ) {}
 
+  /**
+   * ! CONTROLLER FOR CRUD USERS
+   */
   @Get()
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ description: 'Gets all users' })

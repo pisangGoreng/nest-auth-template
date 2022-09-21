@@ -7,7 +7,7 @@ import {
   Unique,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
-// import { Role } from 'src/role/rote.entity';
+import { Role } from 'src/role/models/role.entity';
 
 @Entity()
 @Unique(['email'])
@@ -25,9 +25,9 @@ export class User {
   @Exclude()
   password: string;
 
-  // @ManyToOne(() => Role)
-  // @JoinColumn({ name: 'role_id' }) // to rename column in database, default is camelCase
-  // role: Role;
+  @ManyToOne(() => Role)
+  @JoinColumn({ name: 'role_id' }) // to rename column in database, default is camelCase
+  role: Role;
 }
 
 // ! Eclude() => untuk me remove field sebelum di kirim menjadi response
