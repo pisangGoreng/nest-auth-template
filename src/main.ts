@@ -32,6 +32,7 @@ async function bootstrap() {
       //the modules that you want to include in your swagger docs
     },
   );
+
   SwaggerModule.setup('api', app, document); // http://localhost:3000/api
   console.log('ce ', process.env);
   await app.listen(process.env.APP_PORT);
