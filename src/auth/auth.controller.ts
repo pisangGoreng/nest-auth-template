@@ -116,10 +116,6 @@ export class AuthController {
   @UseGuards(AuthGuard)
   @HttpCode(HttpStatus.OK)
   async userLoginDetails(@Req() request: Request) {
-    // const id = await this.authService.userId(request);
-
-    // return this.userService.findOne({ id });
-
     const [verifiedToken, verifiedTokenErr] =
       await this.authService.verifyToken(request);
     if (verifiedTokenErr) throw new BadRequestException(verifiedTokenErr);

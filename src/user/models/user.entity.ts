@@ -9,7 +9,7 @@ import {
 import { Exclude } from 'class-transformer';
 import { Role } from 'src/role/models/role.entity';
 
-@Entity()
+@Entity('users')
 @Unique(['email'])
 export class User {
   @PrimaryGeneratedColumn()

@@ -1,3 +1,4 @@
+#cloudbuild.yaml
 steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
@@ -6,7 +7,7 @@ steps:
         'build',
         '-t',
         'gcr.io/test-gcp-344003/nest-auth-template:$COMMIT_SHA',
-        '--file=./docker-compose.yml',
+        '--file=./Dockerfile',
         '.',
       ]
   # Push the container image to Container Registry

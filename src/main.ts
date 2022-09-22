@@ -35,7 +35,8 @@ async function bootstrap() {
 
   await app.listen(process.env.APP_PORT);
 
-  console.log(`Server use ==> ${process.env.NODE_ENV}`);
+  console.log(`Connection to ${process.env.DB_TYPE}`);
+  console.log(`Server use ==> ${process.env.NODE_ENV} env`);
   console.log(`Server is running on PORT ==> ${process.env.APP_PORT}`);
 }
 bootstrap();

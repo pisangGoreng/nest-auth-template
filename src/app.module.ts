@@ -10,15 +10,15 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: process.env.DB_HOST, // ! service name in docker-compose in .env
+      host: process.env.DB_HOST,
       port: Number(process.env.DB_PORT),
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      autoLoadEntities:
-        process.env.NODE_ENV === 'dev' || process.env.NODE_ENV === 'dev-local', // use on DEV only
+      autoLoadEntities: ['dev', 'dev-local'].includes(process.env.NODE_ENV),
+      logging: ['dev', 'dev-local'].includes(process.env.NODE_ENV),
       entities: [],
-      synchronize: true,
+      // synchronize: true,
     }),
     CommonModule,
     UserModule,
