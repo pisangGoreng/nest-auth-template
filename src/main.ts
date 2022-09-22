@@ -28,7 +28,8 @@ async function bootstrap() {
       .setVersion('1.0')
       .build(),
     {
-      include: [UserModule], //the modules that you want to include in your swagger docs
+      include: [UserModule],
+      //the modules that you want to include in your swagger docs
     },
   );
   SwaggerModule.setup('api', app, document); // http://localhost:3000/api
