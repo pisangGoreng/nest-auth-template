@@ -33,7 +33,7 @@ async function bootstrap() {
     },
   );
   SwaggerModule.setup('api', app, document); // http://localhost:3000/api
-
+  console.log('ce ', process.env);
   await app.listen(process.env.APP_PORT);
 
   console.log(`Connection to ${process.env.DB_TYPE}`);

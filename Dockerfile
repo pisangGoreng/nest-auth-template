@@ -15,7 +15,7 @@ RUN npm install
 COPY . ./
 
 # COPY .env.dev ./.env
-COPY .env ./.env
+# COPY .env ./.env
 
 # CMD npm run start:dev
 # Run the web service on container startup.
