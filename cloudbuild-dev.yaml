@@ -1,0 +1,34 @@
+#cloudbuild.yaml
+steps:
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'gcr.io/test-gcp-344003/nest-auth-template:$COMMIT_SHA',
+        '--file=./Dockerfile',
+        '.',
+      ]
+  # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/test-gcp-344003/nest-auth-template:$COMMIT_SHA']
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      [
+        'run',
+        'deploy',
+        'nest-auth-template',
+        '--image',
+        'gcr.io/test-gcp-344003/nest-auth-template:$COMMIT_SHA',
+        '--platform',
+        'managed',
+        '--port',
+        '8080',
+        '--allow-unauthenticated',
+      ]
+
+images:
+  - 'gcr.io/test-gcp-344003/nest-auth-template:$COMMIT_SHA'
