@@ -2,9 +2,9 @@ import { configure as serverlessExpress } from '@vendia/serverless-express';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
-let cachedServer;
-
 export const handler = async (event, context) => {
+  let cachedServer;
+
   if (!cachedServer) {
     const nestApp = await NestFactory.create(AppModule);
     await nestApp.init();
