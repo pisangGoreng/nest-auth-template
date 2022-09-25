@@ -1,1 +1,4 @@
 - nest g module common
+
+
+aws cloudformation deploy --stack-name nest-auth-template-db --template-file rds.yaml
