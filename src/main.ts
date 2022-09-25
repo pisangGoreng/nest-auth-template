@@ -29,16 +29,22 @@ async function bootstrap() {
       .build(),
     {
       include: [UserModule],
-      //the modules that you want to include in your swagger docs
     },
   );
 
   SwaggerModule.setup('api', app, document); // http://localhost:3000/api
   await app.listen(process.env.APP_PORT);
 
-  console.log('env ', process.env);
-  console.log(`Connection to ${process.env.DB_TYPE}`);
-  console.log(`Server use ==> ${process.env.NODE_ENV} env`);
+  console.log('Connection ', {
+    type: 'mysql',
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+  });
+  console.log(`Server use ${process.env.NODE_ENV} env`);
   console.log(`Server is running on PORT ==> ${process.env.APP_PORT}`);
+  console.log('');
 }
 bootstrap();

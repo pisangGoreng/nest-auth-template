@@ -35,7 +35,9 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 .dbdata
-# .env
-# .env./*
+.serverless
+
+.env
+.env./*
 
 # cloudbuild-dev.yaml

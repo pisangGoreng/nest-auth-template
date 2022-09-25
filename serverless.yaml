@@ -6,20 +6,23 @@ frameworkVersion: '3'
 
 plugins:
   - serverless-jetpack
+  - serverless-dotenv-plugin
+
+useDotenv: true
 
 provider:
   name: aws
   runtime: nodejs14.x
   region: ap-southeast-1
   stage: dev
-  # profile: endy-santoso
-  vpc:
-    securityGroupIds:
-      - sg-0f939b181f76c722d
-    subnetIds:
-      - subnet-0cad2d86c1b999a33
-      - subnet-0d8ba1654b78a500b
-      - subnet-0e26e9823ce345520
+  profile: endy-santoso
+  # vpc:
+  #   securityGroupIds:
+  #     - sg-0f939b181f76c722d
+  #   subnetIds:
+  #     - subnet-0cad2d86c1b999a33
+  #     - subnet-0d8ba1654b78a500b
+  #     - subnet-0e26e9823ce345520
 
 functions:
   api:
