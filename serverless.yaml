@@ -1,3 +1,5 @@
+org: pisanggoreng
+app: nest-auth-template
 service: nest-auth-template-dev
 
 frameworkVersion: '3'
