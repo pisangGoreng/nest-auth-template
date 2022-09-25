@@ -10,7 +10,7 @@ provider:
   runtime: nodejs14.x
   region: ap-southeast-1
   stage: dev
-  profile: endy-santoso
+  # profile: endy-santoso
   vpc:
     securityGroupIds:
       - sg-0f939b181f76c722d
