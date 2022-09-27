@@ -55,7 +55,7 @@ export class AuthController {
     const [createdUser, createdUserErr] = await this.userService.create({
       ...body,
       password: await bcrypt.hash(password, 12),
-      role: { id: 1 },
+      role: { id: body.role },
     });
     if (createdUserErr) throw new BadRequestException(createdUserErr);
 
@@ -120,9 +120,12 @@ export class AuthController {
       await this.authService.verifyToken(request);
     if (verifiedTokenErr) throw new BadRequestException(verifiedTokenErr);
 
-    const [user, userErr] = await this.userService.findOne({
-      id: verifiedToken.id,
-    });
+    const [user, userErr] = await this.userService.findOne(
+      {
+        id: verifiedToken.id,
+      },
+      ['role'],
+    );
     if (userErr) throw new BadRequestException(userErr);
 
     return user;

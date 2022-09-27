@@ -15,7 +15,6 @@ import {
   UseGuards,
   Req,
 } from '@nestjs/common';
-import { Request } from 'express';
 import { ApiOperation, ApiTags, ApiBody, ApiParam } from '@nestjs/swagger';
 
 import * as bcrypt from 'bcryptjs';
@@ -23,22 +22,17 @@ import { AuthGuard } from 'src/auth/auth.guard';
 import { UserCreateDto } from './models/user-create.dto';
 import { UserUpdateDto } from './models/user-update.dto';
 import { UserService } from './user.service';
-import { AuthService } from 'src/auth/auth.service';
+import { HasPermission } from 'src/permission/has-permission.decorator';
 
 @UseInterceptors(ClassSerializerInterceptor)
 @UseGuards(AuthGuard)
 @ApiTags('users')
 @Controller('users')
 export class UserController {
-  constructor(
-    private userService: UserService,
-    private authService: AuthService,
-  ) {}
+  constructor(private userService: UserService) {}
 
-  /**
-   * ! CONTROLLER FOR CRUD USERS
-   */
   @Get()
+  @HasPermission('users')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ description: 'Gets all users' })
   async getAll(@Query('page') page = 1): Promise<any> {

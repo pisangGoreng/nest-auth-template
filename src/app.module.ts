@@ -5,6 +5,8 @@ import { UserModule } from './user/user.module';
 import { RoleModule } from './role/role.module';
 import { PermissionModule } from './permission/permission.module';
 import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { PermissionGuard } from './permission/permission.guard';
 
 const isEnable = ['dev', 'dev-local'].includes(process.env.NODE_ENV);
 @Module({
@@ -26,6 +28,12 @@ const isEnable = ['dev', 'dev-local'].includes(process.env.NODE_ENV);
     RoleModule,
     PermissionModule,
     AuthModule,
+  ],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: PermissionGuard,
+    },
   ],
 })
 export class AppModule {}
